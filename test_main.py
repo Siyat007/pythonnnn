@@ -48,4 +48,3 @@ def test_average():
     response = client.get("/average?a=4&b=6")
     assert response.status_code == 200
     assert response.json() == {"result": 5.0}
-
