@@ -33,7 +33,7 @@ jobs:
       # Step 4: Run unit tests with coverage
       - name: Run unit tests with coverage
         run: |
-          pytest --cov=main --cov-report=xml
+          pytest --cov=src --cov-report=xml
         env:
           PYTHONPATH: .
 
