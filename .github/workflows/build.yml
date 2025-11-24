@@ -32,8 +32,8 @@ jobs:
 
       # Step 4: Run unit tests
       - name: Run unit tests
-      run: pytest -v
-      env:
+        run: pytest -v
+        env:
          PYTHONPATH: .
 
         
