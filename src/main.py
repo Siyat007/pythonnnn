@@ -1,3 +1,4 @@
+# main.py
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -20,9 +21,10 @@ def divide(a: float, b: float):
         return {"error": "Cannot divide by zero"}
     return {"result": a / b}
 
+# Introduced vulnerability: using eval() unsafely
 @app.get("/power")
 def power(a: float, b: float):
-    return {"result": a ** b}
+    return {"result": eval(f"{a}**{b}")}  # unsafe usage, SonarQube will flag
 
 @app.get("/modulo")
 def modulo(a: float, b: float):
