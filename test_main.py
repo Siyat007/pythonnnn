@@ -7,11 +7,45 @@ client = TestClient(app)
 def test_add():
     response = client.get("/add?a=5&b=3")
     assert response.status_code == 200
-    assert response.json()["result"] == 8
+    assert response.json() == {"result": 8}
 
-def test_power_safe_check():
-    # This test would fail if someone passes malicious input
-    malicious_input = "2; import os; os.system('echo hacked')"
-    response = client.get(f"/power?a={malicious_input}&b=2")
+def test_subtract():
+    response = client.get("/subtract?a=10&b=4")
     assert response.status_code == 200
-    # SonarQube should flag the unsafe eval usage
+    assert response.json() == {"result": 6}
+
+def test_multiply():
+    response = client.get("/multiply?a=3&b=7")
+    assert response.status_code == 200
+    assert response.json() == {"result": 21}
+
+def test_divide():
+    response = client.get("/divide?a=10&b=2")
+    assert response.status_code == 200
+    assert response.json() == {"result": 5.0}
+
+def test_divide_by_zero():
+    response = client.get("/divide?a=10&b=0")
+    assert response.status_code == 200
+    assert response.json() == {"error": "Cannot divide by zero"}
+
+def test_power():
+    response = client.get("/power?a=2&b=3")
+    assert response.status_code == 200
+    assert response.json() == {"result": 8}
+
+def test_modulo():
+    response = client.get("/modulo?a=10&b=3")
+    assert response.status_code == 200
+    assert response.json() == {"result": 1}
+
+def test_modulo_by_zero():
+    response = client.get("/modulo?a=10&b=0")
+    assert response.status_code == 200
+    assert response.json() == {"error": "Cannot modulo by zero"}
+
+def test_average():
+    response = client.get("/average?a=4&b=6")
+    assert response.status_code == 200
+    assert response.json() == {"result": 5.0}
+
