@@ -1,6 +1,5 @@
 from fastapi import FastAPI
 
-app = FastAPI()
 
 @app.get("/add")
 def add(a: float, b: float):
@@ -33,3 +32,4 @@ def modulo(a: float, b: float):
 @app.get("/average")
 def average(a: float, b: float):
     return {"result": (a + b) / 2}
+
