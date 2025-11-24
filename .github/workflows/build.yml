@@ -32,8 +32,11 @@ jobs:
 
       # Step 4: Run unit tests
       - name: Run unit tests
-        run: |
-          pytest -v
+      run: pytest -v
+      env:
+         PYTHONPATH: .
+
+        
 
       # Step 5: Run SonarQube scan
       - name: SonarQube Scan
